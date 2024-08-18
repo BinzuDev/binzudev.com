@@ -1,0 +1,324 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	/*font-size: 100%;*/
+	/*font: inherit;*/
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}/*
+ol, ul {
+	list-style: none;
+}*/
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*-----------------
+    Custom css:
+------------------*/
+
+* {
+  box-sizing:border-box;
+}
+
+.flex{
+  display:flex;
+}
+
+body {
+  background-color: black;
+  font-size:1.3em;
+  color: white;
+  /*overflow: hidden; /* Hide scrollbars */
+}
+
+/* Hide the scrollbar */
+body::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: transparent;
+}
+
+body.mobile {
+  overflow: auto;
+}
+
+main {
+  max-width:1150px;
+  margin:auto;
+  background-color: black;
+  min-height:100vh;
+  outline-color: #384041;
+  outline-width: 2px;
+}
+
+h1 {
+  font-family: "Montserrat";
+  clear:both;
+  color: white;
+  text-align: center;
+}
+
+p, h2, h3, ul, li {
+  font-family: 'Source Sans Pro';
+  font-weight: 600;
+  /*font-family: 'Calibri';*/
+  clear:both;
+  color: white;
+}
+
+li {
+  font-weight: bold;
+  margin-left: 60px
+}
+
+h2, h3 {
+  text-align: center;
+}
+
+a {
+  color: inherit;
+} 
+
+p {
+  padding: 0px 0px;
+}
+
+section {
+  max-width:1100px;
+  margin: auto;
+}
+
+#logo {
+  margin-top: 13px;
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+  /* nav menu */
+nav  {
+  display:flex;
+  margin:auto;
+  padding: 15px;
+  padding-bottom: 22px;
+}
+
+.main-menu div {
+  font-family: "Montserrat";
+  border-radius: 10px;
+  text-align: center;
+  padding: 20px 0;
+  margin: 0px 20px;
+  border: 1px solid white;
+  user-select: none;
+  width: 33.33%;
+  background-color: gray;
+  color:white;
+  transition: width 0.4s, background-color 0.4s, color 0.4s;
+}
+
+div.side:hover {
+  width: 37%;
+  background-color: white;
+  color:black;
+}
+
+div.center:hover {
+  width: 40%;
+  background-color: white;
+  color:black;
+}
+
+.main-menu div:active {
+  transform: matrix(1, 0, 0, 0.95, 0, 5)
+  /* scaleX(), skewY(), skewX(), 
+  scaleY(), translateX(), translateY(). */
+}
+
+.main-menu div.selected {
+  border: 3px solid white;
+  text-decoration: underline;
+  font-weight: bold;
+  padding: 17px 0px;
+}
+
+ /* ////// */
+
+img {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  max-width: 1000px;
+}
+
+/* Game thumbnails*/
+
+#thumbnails {
+  display:flex;
+  margin: 0px -50px;
+}
+
+#thumbnails.mobile {
+  margin: 0px 0px;
+}
+
+
+section.mobile {
+  margin: 0px 15px;
+}
+
+.thumbnail {
+  max-width: 18%;
+  border-radius: 25px;
+  border: 5px solid black;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.thumbnail:hover {
+  max-width: 18%;
+  border-radius: 4px;
+  border: 0px solid black;
+}
+
+img.selected {
+  /*border-color: blue;*/
+  outline: 5px solid blue;
+}
+
+
+.gameDesc{
+  float: left;
+  max-width: 65%;
+}
+
+.mobile > p.gameDesc{
+  float: none;
+  max-width: 100%;
+}
+
+.gameTable{
+  float: right;
+}
+
+.mobile > table.gameTable{
+  float: none;
+  margin: 25px auto;
+}
+
+
+table, th, td{
+  border: 2px solid white;
+  /*font-family: 'Calibri';*/
+  font-family: 'Source Sans Pro', sans-serif;
+  /*font-weight: bold;*/
+  font-weight: 500;
+  padding: 2px;
+}
+
+.mobile table.gameTable td{
+  font-weight: bold;
+  font-size:xx-large;
+}
+
+
+
+#four {
+  width: 30%;
+}
+
+.hidden {
+  display: none;
+}
+
+
+/*-----------------
+    Animations:
+------------------*/
+
+.fadein {
+  opacity: 0;
+  animation: fadein 1.5s forwards;
+  animation-timing-function: ease-out;
+}
+@keyframes fadein {
+  from{
+    opacity: 0;
+    padding-top: 50px;
+  }
+
+  to{
+    opacity: 1;
+    padding-top: 0px;
+  }
+}
+
+.fadeout {
+  opacity: 1.5;
+  animation: fadeout 1s forwards;
+  animation-timing-function: ease-in;
+}
+@keyframes fadeout {
+  from{
+    opacity: 1;
+  }
+
+  to{
+    opacity: 0;
+  }
+}
+
+.fadeinFaster {
+  opacity: 0;
+  animation: fadein 0.5s forwards;
+  animation-timing-function: ease-out;
+}
+@keyframes fadein {
+  from{
+    opacity: 0;
+    padding-top: 20px;
+  }
+
+  to{
+    opacity: 1;
+    padding-top: 0px;
+  }
+}
+
+
+

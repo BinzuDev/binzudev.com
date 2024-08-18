@@ -1,0 +1,57 @@
+// Declare Constants
+const actor = arguments[0];
+const rect = arguments[1];
+
+// Draw Actor Graphic
+const gx = rect.x + (this.graphicType() === 'face' ? 1 : 0);
+const gy = rect.y + (this.graphicType() === 'face' ? 1 : 0);
+const gw = Math.min(rect.width, ImageManager.faceWidth);
+const gh = Math.min(rect.height, ImageManager.faceHeight);
+this.drawActorGraphic(actor, gx, gy, gw, gh);
+
+// Draw Status Stuff
+const sx = rect.x + 180;
+const sy = rect.y + rect.height / 2 - this.lineHeight() * 1.5;
+const lineHeight = this.lineHeight();
+const sx2 = sx + 180;
+this.drawActorName(actor, sx, sy);
+this.drawActorLevel(actor, sx, sy + lineHeight * 1);
+this.drawActorIcons(actor, sx, sy + lineHeight * 2);
+this.drawActorClass(actor, sx2, sy);
+
+// Place Gauges
+const sy2 = sy + lineHeight;
+const gaugeLineHeight = this.gaugeLineHeight();
+this.placeGauge(actor, "hp", sx2, sy2);
+this.placeGauge(actor, "mp", sx2, sy2 + gaugeLineHeight);
+const roomForTp = (sy2 + gaugeLineHeight * 3) <= rect.y + rect.height;
+if ($dataSystem.optDisplayTp && roomForTp) {
+    this.placeGauge(actor, "tp", sx2, sy2 + gaugeLineHeight * 2);
+}
+
+// Following Requires VisuStella MZ's Core Engine
+// Draw Additional Parameter Data if Enough Room
+const sx3 = sx2 + 180;
+const sw = rect.width - sx3 - 2;
+if (Imported.VisuMZ_0_CoreEngine && sw >= 300) {
+    const params = VisuMZ.CoreEngine.Settings.Param.DisplayedParams;
+    const pw = Math.floor(sw / 2) - 24;
+    let px = sx3;
+    let py = rect.y + Math.floor((rect.height - (Math.ceil(params.length / 2) * gaugeLineHeight)) / 2) - 15;
+    let counter = 0;
+    for (const param of params) {
+        this.resetFontSettings();
+        this.drawParamText(px, py, pw, param, false);
+        this.resetTextColor();
+        /*this.contents.fontSize -= 8;*/
+        const paramValue = actor.paramValueByName(param, true);
+        this.contents.drawText(paramValue, px, py, pw, gaugeLineHeight + 8, 'right');
+        counter++;
+        if (counter % 2 === 0) {
+            px = sx3;
+            py += gaugeLineHeight + 8;
+        } else {
+            px += pw + 24;
+        }
+    }
+}
